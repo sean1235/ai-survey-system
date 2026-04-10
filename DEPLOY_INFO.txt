@@ -1,0 +1,23 @@
+🚀 自动部署信息
+
+GitHub仓库已创建：
+https://github.com/sean1235/ai-survey-system
+
+现在需要完成以下步骤：
+
+1. 访问 https://vercel.com/new
+2. 点击 "Import Git Repository"
+3. 输入仓库URL: https://github.com/sean1235/ai-survey-system
+4. 或者直接点击这个链接：
+   https://vercel.com/new/clone?repository-url=https://github.com/sean1235/ai-survey-system
+
+5. 添加环境变量：
+   Name: MONGODB_URI
+   Value: mongodb+srv://你的用户名:你的密码@cluster.mongodb.net/?retryWrites=true&w=majority
+
+6. 点击 Deploy
+
+部署完成后，你会得到一个链接，类似：
+https://ai-survey-system.vercel.app
+
+我正在上传所有文件到GitHub...

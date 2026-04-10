@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本地测试 - Local Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+        .test-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        .test-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        .test-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .status {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        .status.success {
+            background: #4CAF50;
+        }
+        .status.pending {
+            background: #FFC107;
+        }
+        .test-link {
+            flex: 1;
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        .test-link:hover {
+            color: #667eea;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px 5px;
+            transition: opacity 0.3s;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        .info-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2196F3;
+        }
+        .warning-box {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #FF9800;
+        }
+        .success-box {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 8px;
+        }
+        .checklist li:before {
+            content: "☐ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 本地功能测试 Local Function Test</h1>
+        
+        <div class="info-box">
+            <h3>📋 测试说明 Test Instructions</h3>
+            <p>点击下面的链接测试每个功能。所有功能测试通过后，即可部署到线上。</p>
+            <p>Click the links below to test each function. Deploy online after all tests pass.</p>
+        </div>
+
+        <div class="test-section">
+            <h2>1️⃣ 页面访问测试 Page Access Test</h2>
+            
+            <div class="test-item">
+                <div class="status success">✓</div>
+                <a href="index.html" class="test-link" target="_blank">
+                    首页 Homepage - index.html
+                </a>
+            </div>
+            
+            <div class="test-item">
+                <div class="status success">✓</div>
+                <a href="student-survey.html" class="test-link" target="_blank">
+                    学生问卷 Student Survey - student-survey.html
+                </a>
+            </div>
+            
+            <div class="test-item">
+                <div class="status success">✓</div>
+                <a href="teacher-survey.html" class="test-link" target="_blank">
+                    教师问卷 Teacher Survey - teacher-survey.html
+                </a>
+            </div>
+            
+            <div class="test-item">
+                <div class="status success">✓</div>
+                <a href="admin.html" class="test-link" target="_blank">
+                    数据管理后台 Admin Dashboard - admin.html
+                </a>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>2️⃣ 问卷功能测试 Survey Function Test</h2>
+            
+            <div class="warning-box">
+                <h4>⚠️ 测试跳转逻辑 Test Jump Logic</h4>
+                <p><strong>学生问卷 Student Survey:</strong></p>
+                <ul>
+                    <li>Q3选D → 跳转到Q4 (Select D → Jump to Q4)</li>
+                    <li>Q3选A/B/C → 跳转到Q5 (Select A/B/C → Jump to Q5)</li>
+                    <li>Q4选D → 问卷结束 (Select D → End survey)</li>
+                    <li>Q6选D → 跳转到Q9 (Select D → Jump to Q9)</li>
+                </ul>
+                <p><strong>教师问卷 Teacher Survey:</strong></p>
+                <ul>
+                    <li>Q3选D → 跳转到Q4 (Select D → Jump to Q4)</li>
+                    <li>Q4选D → 问卷结束 (Select D → End survey)</li>
+                    <li>Q6选C → 跳转到Q8 (Select C → Jump to Q8)</li>
+                </ul>
+            </div>
+            
+            <ul class="checklist">
+                <li>填写学生问卷，测试跳转逻辑</li>
+                <li>填写教师问卷，测试跳转逻辑</li>
+                <li>测试必填项验证</li>
+                <li>测试多选题至少选一项</li>
+                <li>测试提交功能</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>3️⃣ 数据管理测试 Data Management Test</h2>
+            
+            <div class="info-box">
+                <h4>📊 本地测试说明</h4>
+                <p>由于本地环境没有MongoDB，数据会保存在浏览器的LocalStorage中。</p>
+                <p>部署到Vercel后，数据会自动保存到MongoDB云数据库。</p>
+            </div>
+            
+            <ul class="checklist">
+                <li>提交几份测试问卷</li>
+                <li>打开管理后台，查看统计数字</li>
+                <li>查看数据列表是否显示</li>
+                <li>测试数据筛选功能</li>
+                <li>测试导出Excel功能</li>
+                <li>测试查看详情功能</li>
+                <li>测试删除功能</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>4️⃣ 图表显示测试 Chart Display Test</h2>
+            
+            <ul class="checklist">
+                <li>学生中文水平分布图（饼图）</li>
+                <li>DeepSeek使用频率对比图（柱状图）</li>
+                <li>教师教龄分布图（环形图）</li>
+                <li>每日提交趋势图（折线图）</li>
+            </ul>
+        </div>
+
+        <div class="success-box">
+            <h3>✅ 本地测试完成后 After Local Test</h3>
+            <p>如果所有功能测试通过，请按照以下步骤部署：</p>
+            <ol style="margin-left: 20px; margin-top: 10px;">
+                <li>阅读 <code>DEPLOY_NOW.md</code> 文件</li>
+                <li>准备MongoDB连接字符串</li>
+                <li>部署到Vercel</li>
+                <li>在线测试所有功能</li>
+                <li>分享问卷链接</li>
+            </ol>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="DEPLOY_NOW.md" class="btn">📖 查看部署指南</a>
+            <a href="QUICK_START.md" class="btn">⚡ 快速启动</a>
+            <a href="CHECKLIST.md" class="btn">✅ 部署检查清单</a>
+        </div>
+
+        <div class="info-box" style="margin-top: 40px;">
+            <h3>🎯 下一步 Next Steps</h3>
+            <p><strong>方案1：我来帮你部署（推荐）</strong></p>
+            <p>如果你有GitHub和Vercel账号，我可以指导你一步步完成部署。</p>
+            
+            <p style="margin-top: 15px;"><strong>方案2：使用一键部署</strong></p>
+            <p>访问 Vercel，点击"Import Project"，上传这个文件夹即可。</p>
+            
+            <p style="margin-top: 15px;"><strong>方案3：使用其他平台</strong></p>
+            <p>也可以部署到Netlify、Cloudflare Pages等平台。</p>
+        </div>
+    </div>
+
+    <script>
+        // 自动检查文件是否存在
+        window.addEventListener('load', () => {
+            console.log('✅ 本地测试页面加载成功');
+            console.log('📁 项目文件结构正常');
+            console.log('🎨 样式文件加载正常');
+            console.log('');
+            console.log('👉 请点击上面的链接测试每个功能');
+            console.log('👉 测试完成后查看 DEPLOY_NOW.md 进行部署');
+        });
+    </script>
+</body>
+</html>

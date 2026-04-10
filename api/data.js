@@ -1,5 +1,4 @@
-// Vercel Serverless Function - MongoDB Atlas
-import { MongoClient } from 'mongodb';
+const { MongoClient } = require('mongodb');
 
 const uri = process.env.MONGODB_URI;
 let cachedClient = null;
@@ -9,16 +8,12 @@ async function connectToDatabase() {
         return cachedClient;
     }
     
-    const client = await MongoClient.connect(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-    
+    const client = await MongoClient.connect(uri);
     cachedClient = client;
     return client;
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');

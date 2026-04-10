@@ -1,9 +1,19 @@
-import { MongoClient } from 'mongodb';
+const { MongoClient } = require('mongodb');
 
 const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri);
+let cachedClient = null;
 
-export default async function handler(req, res) {
+async function connectToDatabase() {
+    if (cachedClient) {
+        return cachedClient;
+    }
+    
+    const client = await MongoClient.connect(uri);
+    cachedClient = client;
+    return client;
+}
+
+module.exports = async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -19,9 +29,9 @@ export default async function handler(req, res) {
     }
     
     try {
-        await client.connect();
-        const database = client.db('surveyDB');
-        const collection = database.collection('responses');
+        const client = await connectToDatabase();
+        const db = client.db('survey_db');
+        const collection = db.collection('responses');
         
         const result = await collection.deleteMany({});
         
@@ -35,7 +45,5 @@ export default async function handler(req, res) {
             error: 'Failed to clear data',
             message: error.message 
         });
-    } finally {
-        await client.close();
     }
 }

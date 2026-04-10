@@ -1,23 +1,3 @@
-// Vercel Serverless Function
-import { MongoClient, ObjectId } from 'mongodb';
-
-const uri = process.env.MONGODB_URI;
-let cachedClient = null;
-
-async function connectToDatabase() {
-    if (cachedClient) {
-        return cachedClient;
-    }
-    
-    const client = await MongoClient.connect(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-    
-    cachedClient = client;
-    return client;
-}
-
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,28 +9,5 @@ export default async function handler(req, res) {
         return;
     }
     
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
-    }
-    
-    try {
-        const client = await connectToDatabase();
-        const db = client.db('survey_db');
-        const collection = db.collection('responses');
-        
-        const { id } = req.body;
-        
-        const result = await collection.deleteOne({ _id: new ObjectId(id) });
-        
-        res.status(200).json({ 
-            success: true,
-            deletedCount: result.deletedCount
-        });
-    } catch (error) {
-        console.error('Database error:', error);
-        res.status(500).json({ 
-            error: 'Failed to delete data',
-            message: error.message 
-        });
-    }
+    res.status(200).json({ success: true });
 }

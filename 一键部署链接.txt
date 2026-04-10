@@ -1,0 +1,60 @@
+🎉 GitHub代码已上传成功！
+
+GitHub仓库地址：
+https://github.com/sean1235/ai-survey-system
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 方法1：一键部署到Vercel（最简单）
+
+点击下面的链接，自动部署：
+https://vercel.com/new/clone?repository-url=https://github.com/sean1235/ai-survey-system
+
+步骤：
+1. 点击上面的链接
+2. 登录Vercel（用GitHub账号）
+3. 点击"Deploy"
+4. 等待部署完成
+5. 添加环境变量（部署后在Settings中添加）：
+   - Name: MONGODB_URI
+   - Value: mongodb+srv://用户名:密码@cluster.mongodb.net/?retryWrites=true&w=majority
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 方法2：手动导入（推荐）
+
+1. 访问：https://vercel.com/new
+2. 选择"Import Git Repository"
+3. 输入：https://github.com/sean1235/ai-survey-system
+4. 点击"Import"
+5. 添加环境变量：
+   - Name: MONGODB_URI
+   - Value: 你的MongoDB连接字符串
+6. 点击"Deploy"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 MongoDB连接字符串格式：
+
+mongodb+srv://用户名:密码@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
+
+如果还没有MongoDB，请访问：
+https://www.mongodb.com/cloud/atlas/register
+
+选择免费套餐，创建集群（选择新加坡区域）
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ 部署完成后，你会得到类似这样的链接：
+
+https://ai-survey-system-xxxx.vercel.app
+
+访问地址：
+- 首页：https://你的域名.vercel.app/
+- 学生问卷：https://你的域名.vercel.app/student-survey.html
+- 教师问卷：https://你的域名.vercel.app/teacher-survey.html
+- 数据管理：https://你的域名.vercel.app/admin.html
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 完成后请把链接发给我验收！

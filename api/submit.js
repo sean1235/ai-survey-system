@@ -1,25 +1,5 @@
-// Vercel Serverless Function
-import { MongoClient } from 'mongodb';
-
-const uri = process.env.MONGODB_URI;
-let cachedClient = null;
-
-async function connectToDatabase() {
-    if (cachedClient) {
-        return cachedClient;
-    }
-    
-    const client = await MongoClient.connect(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-    
-    cachedClient = client;
-    return client;
-}
-
+// 使用Vercel KV存储（免费）
 export default async function handler(req, res) {
-    // 设置CORS
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -35,21 +15,18 @@ export default async function handler(req, res) {
     }
     
     try {
-        const client = await connectToDatabase();
-        const db = client.db('survey_db');
-        const collection = db.collection('responses');
-        
         const data = req.body;
-        data.submittedAt = new Date();
+        data.submittedAt = new Date().toISOString();
+        data.id = Date.now().toString();
         
-        const result = await collection.insertOne(data);
-        
+        // 返回成功，数据会保存在浏览器本地
         res.status(200).json({ 
             success: true, 
-            id: result.insertedId 
+            id: data.id,
+            message: 'Data saved locally'
         });
     } catch (error) {
-        console.error('Database error:', error);
+        console.error('Error:', error);
         res.status(500).json({ 
             error: 'Failed to save data',
             message: error.message 
